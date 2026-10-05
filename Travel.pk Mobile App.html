@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Travel.pk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#f3f6fd;--card:#fff;--ink:#0f1b3d;--mut:#5d6b8f;--pri:#2563eb;--dk:#1b3f9e;--line:#dce4f6;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0a1228;--card:#121c3a;--ink:#eaf0ff;--mut:#97a6cc;--line:#25335f}}
+:root[data-theme=dark]{--bg:#0a1228;--card:#121c3a;--ink:#eaf0ff;--mut:#97a6cc;--line:#25335f}
+*{box-sizing:border-box;margin:0}html,body{height:100%}
+body{font-family:'Figtree',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-top:env(safe-area-inset-top,0px);display:flex;flex-direction:column;max-width:480px;margin:auto}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--line)}
+.pk{background:var(--pri);color:#fff;font-weight:800;border-radius:9px;padding:4px 9px}.logo{flex:1;font-weight:800;font-size:18px}.logo small{display:block;font-size:10px;font-weight:600;color:var(--mut)}
+.cur{font-size:12px;font-weight:600;padding:6px 10px;border:1px solid var(--line);border-radius:99px}
+main{flex:1;overflow-y:auto;padding:16px}.scr{display:none}.scr.on{display:block}
+h1{font-size:27px;line-height:1.15;font-weight:800;margin:4px 0 8px}h2{font-size:17px;font-weight:800;margin:20px 0 10px}p{font-size:14px;line-height:1.5;color:var(--mut)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;box-shadow:0 6px 20px rgba(37,99,235,.08)}
+.seg{display:flex;background:var(--bg);border-radius:10px;padding:3px;margin-bottom:10px}.seg button{flex:1;padding:8px;font-size:13px;border-radius:8px;font-weight:600}.seg .on{background:var(--pri);color:#fff}
+label{font-size:12px;font-weight:600;color:var(--mut)}input,select{width:100%;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;margin:4px 0 10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{background:var(--pri);color:#fff;padding:13px;border-radius:12px;font-weight:800;width:100%}.btn.o{background:var(--card);color:var(--ink);border:1px solid var(--line);margin-top:8px}
+.row{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}.chip{white-space:nowrap;padding:8px 13px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:600}
+.dest{min-width:190px;border-radius:16px;padding:14px;color:#fff;text-align:left;min-height:130px;display:flex;flex-direction:column;justify-content:flex-end}.dest b{font-size:18px}.dest span{font-size:12px;opacity:.9}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.fl{display:flex;justify-content:space-between;align-items:center;gap:8px}.price{font-size:20px;font-weight:800;color:var(--pri)}
+.tag{display:inline-block;font-size:11px;font-weight:700;color:var(--dk);background:rgba(37,99,235,.12);border-radius:99px;padding:2px 8px;margin:6px 4px 0 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px}summary{font-weight:700;font-size:14px}details p{margin-top:6px}
+nav{display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;padding:9px 0;font-size:11px;color:var(--mut);font-weight:600}nav i{display:block;font-style:normal;font-size:20px}nav .on{color:var(--pri);font-weight:800}
+.back{color:var(--pri);font-weight:800;margin-bottom:8px}li{font-size:14px;color:var(--mut);margin:6px 0 6px 18px;line-height:1.4}
+</style></head><body>
+<header><span class="pk">.pk</span><div class="logo">Travel.pk<small>Elevated Journeys</small></div><span class="cur">🇵🇰 PKR</span></header>
+<main>
+<section class="scr on" id="home">
+<h1>Compare flights from Pakistan, clearly.</h1><p>Check the full fare, baggage and refund rules before you pay.</p>
+<div class="box"><div class="seg" id="tt"><button class="on" data-t="Round trip">Round trip</button><button data-t="One way">One way</button><button data-t="Multi-city">Multi-city</button></div>
+<div class="two"><div><label>From</label><input id="fr" value="Karachi"></div><div><label>To</label><input id="to" placeholder="Dubai"></div>
+<div><label>Depart</label><input type="date" id="d1"></div><div><label>Return</label><input type="date" id="d2"></div></div>
+<label>Passengers</label><select id="px"><option>1 Adult</option><option>2 Adults</option><option>2 Adults, 1 Child</option><option>3 Adults</option></select>
+<button class="btn" onclick="search()">Search flights</button></div>
+<h2>Popular routes</h2><div class="row" id="rt"></div>
+<h2>Top destinations from Pakistan</h2><div class="row" id="ds"></div>
+<h2>Why Travel.pk</h2>
+<div class="card"><b>Compare the journey</b><p>Look at departure time, connections and duration alongside price.</p></div>
+<div class="card"><b>Read what the fare includes</b><p>Check baggage, change and cancellation conditions first.</p></div>
+<div class="card"><b>Pakistan-based support</b><p>Urdu and English help by phone, WhatsApp and email.</p></div>
+<h2>Services</h2><div class="row"><span class="chip">Flight comparison</span><span class="chip">Destination guides</span><span class="chip">Pilgrimage planning</span><span class="chip">Visa guidance</span><span class="chip">Price alerts</span></div>
+</section>
+<section class="scr" id="fl"><h1 style="font-size:23px">Flights</h1><p id="fs">Enter a route on Home to search.</p><div id="fres" style="margin-top:12px"></div><button class="btn o" onclick="go('home')">Change search</button></section>
+<section class="scr" id="st"><h1 style="font-size:23px">Plan a stay</h1><p>Start with a city guide, then check flights and hotels.</p><div id="sl" style="margin-top:12px"></div></section>
+<section class="scr" id="um"><h1 style="font-size:23px">Umrah and Hajj</h1><p>Separate guidance for documents, timing, stays and ground arrangements.</p>
+<h2>Umrah checklist</h2><ul><li>Passport valid for at least 6 months</li><li>Umrah visa through an approved channel</li><li>Flights to Jeddah or Medina</li><li>Makkah and Madinah stays near the Haram</li><li>Ground transport between cities</li></ul>
+<button class="btn" onclick="pre('Karachi','Jeddah')">Search flights to Jeddah</button><button class="btn o" onclick="pre('Lahore','Medina')">Search flights to Medina</button>
+<p style="margin-top:10px">Always confirm visa and health rules with the official authority and your airline.</p></section>
+<section class="scr" id="tr"><h1 style="font-size:23px">My trips</h1><div class="card"><b>No trips yet</b><p>Sign in to see bookings, payments and passenger details.</p></div>
+<input type="email" placeholder="Email" style="margin-top:6px"><input type="password" placeholder="Password"><button class="btn" onclick="tt2(this)">Sign in</button>
+<h2>Price alerts</h2><div class="card"><p>Track a route over time instead of relying on an undated fare.</p><button class="btn o" onclick="tt2(this)">Create alert</button></div>
+<h2>Help</h2><details><summary>How do I book?</summary><p>Search, compare fare rules, enter passenger names, review and pay.</p></details>
+<details><summary>Can I cancel or change?</summary><p>It depends on the fare. Conditions show before payment.</p></details>
+<details><summary>Booking stuck in processing?</summary><p>Contact the team with your booking reference.</p></details>
+<a href="https://wa.me/924235692952"><button class="btn">Chat on WhatsApp</button></a><a href="tel:+924235692952"><button class="btn o">Call +92 42 3569 2952</button></a>
+<p style="margin-top:8px">Mon–Fri, 10 AM–7 PM PKT · info@travel.pk</p><button class="btn o" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme=='dark'?'light':'dark'">Toggle dark mode</button></section>
+</main>
+<nav id="nv"><button class="on" data-g="home"><i>🏠</i>Home</button><button data-g="fl"><i>✈️</i>Flights</button><button data-g="st"><i>🏨</i>Stay</button><button data-g="um"><i>🕋</i>Umrah</button><button data-g="tr"><i>🧳</i>Trips</button></nav>
+<script>
+var $=i=>document.getElementById(i);
+var R=["Karachi–Dubai","Lahore–Dubai","Islamabad–Dubai","Karachi–Jeddah","Lahore–Jeddah","Karachi–Medina","Karachi–Doha","Karachi–Abu Dhabi","Lahore–Sharjah"];
+var DS=[["Hunza","Pakistan","Attabad Lake, Karakoram","#2f7d5b"],["Skardu","Pakistan","Deosai, K2 gateway","#3b6fb5"],["Lahore","Pakistan","Food Street, Mughal history","#b5543b"],["Istanbul","Türkiye","Hagia Sophia, Bosphorus","#7a4bb5"],["Cappadocia","Türkiye","Balloons, cave hotels","#c0792b"],["Dubai","UAE","Burj Khalifa, desert safari","#1b8fa6"]];
+var AL=[["PIA",1.0,"2h 45m","Direct","1 bag 23 kg"],["Airblue",.93,"2h 50m","Direct","1 bag 20 kg"],["Emirates",1.45,"2h 40m","Direct","2 bags 30 kg"],["flydubai",1.05,"3h 05m","Direct","1 bag 20 kg"],["Qatar Airways",1.3,"6h 40m","1 stop","2 bags 25 kg"]];
+function go(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('#nv button').forEach(b=>b.classList.toggle('on',b.dataset.g==id));document.querySelector('main').scrollTop=0}
+document.querySelectorAll('#nv button').forEach(b=>b.onclick=()=>go(b.dataset.g));
+document.querySelectorAll('#tt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tt button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('d2').disabled=b.dataset.t=='One way'});
+$('rt').innerHTML=R.map(r=>'<button class="chip" onclick="pre(\''+r.split('–')[0]+'\',\''+r.split('–')[1]+'\')">'+r.replace('–',' to ')+'</button>').join('');
+$('ds').innerHTML=DS.map((d,i)=>'<button class="dest" style="background:linear-gradient(160deg,'+d[3]+',#0f1b3d)" onclick="pre(\'Karachi\',\''+d[0]+'\')"><b>'+d[0]+'</b><span>'+d[1]+'</span><span>'+d[2]+'</span></button>').join('');
+$('sl').innerHTML=DS.map(d=>'<div class="card"><b style="font-size:17px">'+d[0]+', '+d[1]+'</b><p>'+d[2]+'</p><button class="btn o" onclick="pre(\'Karachi\',\''+d[0]+'\')">Check flights</button></div>').join('');
+function pre(a,b){$('fr').value=a;$('to').value=b;go('home');$('d1').focus()}
+function search(){var a=$('fr').value.trim(),b=$('to').value.trim(),d=$('d1').value;if(!a||!b||!d){alert('Enter from, to and a departure date.');return}
+var base=18000+(a.length*b.length*377)%22000,t=document.querySelector('#tt .on').dataset.t;
+$('fs').textContent=a+' to '+b+' · '+d+' · '+t+' · '+$('px').value;
+$('fres').innerHTML=AL.map(x=>'<div class="card"><div class="fl"><b>'+x[0]+'</b><span class="price">Rs '+Math.round(base*x[1]/100)*100+'</span></div><p>'+x[2]+' · '+x[3]+'</p><span class="tag">'+x[4]+'</span><span class="tag">Fare rules shown</span></div>').join('')+'<p>Demo fares. Live availability and prices are rechecked before payment.</p>';go('fl')}
+function tt2(b){var t=b.textContent;b.textContent='Demo only: connect backend';setTimeout(()=>b.textContent=t,1600)}
+</script></body></html>
