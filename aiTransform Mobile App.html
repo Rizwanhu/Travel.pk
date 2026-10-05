@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>aiTransform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#f6f4ff;--card:#fff;--ink:#1a1536;--mut:#6b6788;--pri:#6c4cf5;--pri2:#9b5cff;--line:#e5e0fa;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0a24;--card:#171338;--ink:#f1eeff;--mut:#9d98c4;--line:#2b2558}}
+:root[data-theme=dark]{--bg:#0d0a24;--card:#171338;--ink:#f1eeff;--mut:#9d98c4;--line:#2b2558}
+*{box-sizing:border-box;margin:0}html,body{height:100%}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-top:env(safe-area-inset-top,0px);display:flex;flex-direction:column;max-width:480px;margin:auto}
+header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:19px;flex:1}.logo b{background:linear-gradient(90deg,var(--pri),var(--pri2));-webkit-background-clip:text;color:transparent}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.ic{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--line)}
+main{flex:1;overflow-y:auto;padding:16px}
+.scr{display:none}.scr.on{display:block}
+.promo{background:linear-gradient(90deg,var(--pri),var(--pri2));color:#fff;font-size:12px;text-align:center;padding:7px}
+h1{font-size:28px;line-height:1.15;font-weight:800;margin:8px 0}h2{font-size:18px;margin:20px 0 10px}
+p{color:var(--mut);font-size:14px;line-height:1.5}
+.btn{background:linear-gradient(90deg,var(--pri),var(--pri2));color:#fff;padding:13px 20px;border-radius:12px;font-weight:600;width:100%;margin-top:12px}
+.btn.o{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.row{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}.chip{white-space:nowrap;padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.t{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.t i{font-style:normal;font-size:22px;display:block;margin-bottom:6px}.t b{font-size:14px;display:block}.t span{font-size:12px;color:var(--mut)}
+input,textarea,select{width:100%;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:6px 0}
+textarea{min-height:100px}label{font-size:13px;font-weight:600}
+nav{display:flex;border-top:1px solid var(--line);background:var(--card);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;padding:9px 0;font-size:11px;color:var(--mut)}nav button i{display:block;font-style:normal;font-size:20px}nav button.on{color:var(--pri);font-weight:800}
+.back{color:var(--pri);font-weight:600;margin-bottom:8px}
+.out{white-space:pre-wrap;font-size:14px;line-height:1.6;color:var(--ink)}
+.msg{padding:10px 14px;border-radius:16px;margin:8px 0;max-width:85%;font-size:14px;line-height:1.45}.me{background:var(--pri);color:#fff;margin-left:auto}.ai{background:var(--card);border:1px solid var(--line)}
+.price{font-size:30px;font-weight:800}.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px;margin-bottom:12px}.seg button{flex:1;padding:8px;border-radius:9px;font-size:13px}.seg .on{background:var(--pri);color:#fff}
+li{font-size:13px;color:var(--mut);margin:4px 0 4px 18px}
+</style></head><body>
+<div class="promo">Limited offer: sign up and get a 20% bonus on checkout</div>
+<header><div class="logo">ai<b>Transform</b></div><button class="ic" onclick="go('acct')" aria-label="Account">👤</button></header>
+<main>
+<section class="scr on" id="home">
+<h1>Unleash the power of AI</h1><p>Text, image, code, chat, voiceover and speech to text in one platform.</p>
+<button class="btn" onclick="go('tools')">Explore tools</button><button class="btn o" onclick="go('acct')">Sign in</button>
+<h2>Create with AI</h2><div class="grid" id="feat"></div>
+<h2>Built for</h2><div class="row"><span class="chip">Digital agencies</span><span class="chip">Product designers</span><span class="chip">Entrepreneurs</span><span class="chip">Copywriters</span><span class="chip">Marketers</span><span class="chip">Developers</span></div>
+<h2>Platform tools</h2>
+<div class="card"><b>Advanced dashboard</b><p>Track time saved and content generated.</p></div>
+<div class="card"><b>Affiliate system</b><p>Invite friends and earn a commission on their first purchase.</p></div>
+<div class="card"><b>Easy export</b><p>Export to text, PDF, Word or HTML.</p></div>
+<div class="card"><b>Support platform</b><p>Manage tickets from your dashboard.</p></div>
+<h2>How it works</h2>
+<div class="card"><b>1. Describe</b><p>Explain your content and set your options.</p></div>
+<div class="card"><b>2. Generate</b><p>Add keywords about your brand or product; AI does the rest.</p></div>
+<div class="card"><b>3. Edit and export</b><p>Refine your result and export it.</p></div>
+<h2>Trusted by creators</h2>
+<div class="card"><p>“Saved me time and improved the quality of my content.”</p><b>Peline Jan, Entrepreneur</b></div>
+<div class="card"><p>“Support was always there when I had questions.”</p><b>Eric Sanchez, UX Designer</b></div>
+</section>
+<section class="scr" id="tools"><h1 style="font-size:24px">Tools</h1>
+<input id="q" placeholder="Search 170+ templates" oninput="list()"><div class="row" id="cats"></div><div id="tl" style="margin-top:10px"></div></section>
+<section class="scr" id="gen"><button class="back" onclick="go('tools')">‹ Tools</button><h1 id="gt" style="font-size:22px"></h1><p id="gd"></p>
+<label>Topic or keywords</label><textarea id="gi" placeholder="e.g. Himalayan pink salt for home cooks"></textarea>
+<label>Tone</label><select id="gtone"><option>Professional</option><option>Friendly</option><option>Persuasive</option><option>Witty</option></select>
+<label>Language</label><select id="gl"><option>English</option><option>Urdu</option><option>Arabic</option><option>Spanish</option></select>
+<button class="btn" onclick="make()">Generate</button><div class="card out" id="go" style="display:none;margin-top:14px"></div>
+<button class="btn o" id="cp" style="display:none" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('go').innerText);this.textContent='Copied'">Copy result</button></section>
+<section class="scr" id="chat"><h1 style="font-size:24px">AI chat</h1><div id="msgs"><div class="msg ai">Hi, I'm your aiTransform assistant. Ask me for ideas, drafts or summaries.</div></div>
+<div style="display:flex;gap:8px"><input id="ci" placeholder="Type a message" onkeydown="if(event.key=='Enter')send()"><button class="btn" style="width:auto;margin:6px 0" onclick="send()">Send</button></div></section>
+<section class="scr" id="plans"><h1 style="font-size:24px">Pricing</h1><p>Annual saves 20%. 172 features on every plan.</p>
+<div class="seg" style="margin-top:12px"><button class="on" onclick="pl('y',this)">Annual</button><button onclick="pl('l',this)">Lifetime</button></div><div id="pc"></div></section>
+<section class="scr" id="acct"><h1 style="font-size:24px">Welcome back</h1><p>Sign in or join the hub.</p>
+<input type="email" placeholder="Email"><input type="password" placeholder="Password">
+<button class="btn" onclick="toast(this)">Sign in</button><button class="btn o" onclick="toast(this)">Join hub</button>
+<h2>Help</h2><div class="card"><b>Support tickets</b><p>Raise a ticket to request a custom template.</p></div>
+<div class="card"><b>Resources</b><p>Guides and updates on the aiTransform blog.</p></div>
+<button class="btn o" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme=='dark'?'light':'dark'">Toggle dark mode</button></section>
+</main>
+<nav id="nv"><button class="on" data-g="home"><i>🏠</i>Home</button><button data-g="tools"><i>✨</i>Tools</button><button data-g="chat"><i>💬</i>Chat</button><button data-g="plans"><i>💎</i>Plans</button><button data-g="acct"><i>👤</i>Account</button></nav>
+<script>
+var T=[["AI Text Generator","📝","Blog","Write articles, titles and copy instantly."],["AI Image Generator","🎨","Creative","Create images from a prompt."],["AI Code Generator","💻","Development","Generate, fix and explain code."],["AI Chat Bot","💬","Chat","Get instant answers on any topic."],["AI Speech to Text","🎙️","Voiceover","Transcribe recordings in minutes."],["AI Voiceover","🔊","Voiceover","Turn text into natural voices."],["Post Title Generator","📰","Blog","Captivating post titles."],["Summarize Text","📄","Writer","Condense long text."],["Product Description","🛍️","Ecommerce","Descriptions that sell."],["Facebook Ads","📣","Advertisement","High-converting ad copy."],["Instagram Captions","📸","Social media","Captions that engage."],["YouTube Video Title","▶️","Youtube","Titles that get views."],["Email Generator","✉️","Email","Draft emails from a subject."],["Cover Letter","📑","Academic","Professional cover letters."],["Resume Builder","🧾","Business","Resumes for your skills."],["Meta Description","🔎","Website","SEO-friendly meta text."],["Grammar Correction","✅","Writer","Fix grammar errors."],["Translate","🌐","Languages","Translate between languages."],["Sales Pitch","💼","Business","Persuasive pitches."],["Travel Planner","🧳","Entertainment","Itineraries for any trip."]];
+var cat="All",C=["All"].concat([...new Set(T.map(x=>x[2]))]);
+function $(i){return document.getElementById(i)}
+function go(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id));var m=id=='gen'?'tools':id;document.querySelectorAll('#nv button').forEach(b=>b.classList.toggle('on',b.dataset.g==m));document.querySelector('main').scrollTop=0}
+document.querySelectorAll('#nv button').forEach(b=>b.onclick=()=>go(b.dataset.g));
+function tile(x,i){return '<button class="t" onclick="openT('+i+')"><i>'+x[1]+'</i><b>'+x[0]+'</b><span>'+x[3]+'</span></button>'}
+$('feat').innerHTML=[0,1,2,3,4,5].map(i=>tile(T[i],i)).join('');
+function drawC(){$('cats').innerHTML=C.map(c=>'<button class="chip'+(c==cat?' on':'')+'" onclick="cat=\''+c+'\';drawC();list()">'+c+'</button>').join('')}
+function list(){var q=$('q').value.toLowerCase();$('tl').innerHTML='<div class="grid">'+T.map((x,i)=>[x,i]).filter(a=>(cat=='All'||a[0][2]==cat)&&(a[0][0]+a[0][3]).toLowerCase().includes(q)).map(a=>tile(a[0],a[1])).join('')+'</div>'}
+drawC();list();
+var cur=0;function openT(i){cur=i;$('gt').textContent=T[i][1]+' '+T[i][0];$('gd').textContent=T[i][3];$('go').style.display=$('cp').style.display='none';go('gen')}
+function make(){var t=$('gi').value.trim()||'your topic',n=T[cur][0],tn=$('gtone').value.toLowerCase();$('go').textContent='Demo output · '+n+' ('+tn+', '+$('gl').value+')\n\n1. A '+tn+' take on '+t+' that leads with the benefit.\n2. Three key points your audience cares about, built from your keywords.\n3. A clear call to action to close.\n\nConnect your aiTransform account to generate live results.';$('go').style.display=$('cp').style.display='block'}
+function send(){var v=$('ci').value.trim();if(!v)return;$('msgs').innerHTML+='<div class="msg me"></div>';$('msgs').lastChild.textContent=v;$('ci').value='';setTimeout(()=>{$('msgs').innerHTML+='<div class="msg ai">Demo reply: sign in to chat with the live aiTransform assistant.</div>'},500)}
+var P={y:[["Basic","$299.99","per year","7-day free trial · basic templates · basic support"],["Standard","$479.99","per year","Custom prompts · premium templates · premium support"],["Gold","$959.99","per year","5 team seats · custom prompts · premium support"]],l:[["Starter","$59.99","one time","All features · 100,000 words · 50,000 image tokens"],["Basic","$29.99","one time","3-day trial · ChatGPT 3.5 · basic support"],["Standard","$49.99","one time","Premium templates · custom prompts"]]};
+function pl(k,b){document.querySelectorAll('.seg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('pc').innerHTML=P[k].map(p=>'<div class="card"><b>'+p[0]+'</b><div class="price">'+p[1]+' <small style="font-size:13px;color:var(--mut)">'+p[2]+'</small></div><p>'+p[3]+'</p><button class="btn" onclick="go(\'acct\')">Select '+p[0]+'</button></div>').join('')}
+pl('y',document.querySelector('.seg .on'));
+function toast(b){var t=b.textContent;b.textContent='Demo only: connect backend';setTimeout(()=>b.textContent=t,1600)}
+</script></body></html>
